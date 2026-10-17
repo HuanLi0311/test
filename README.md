@@ -13,6 +13,7 @@ to `HuanLi0311/test` on branch `main`. It continues after the terminal closes
 and starts again at boot through the existing user linger configuration.
 Long-running attempts finish before another starts; failures retry on later ticks.
 Remote history is preserved; a divergent remote requires manual resolution.
+The local log keeps the latest attempt and is replaced on each run.
 
 `.gitignore` excludes environments, credentials, downloads, datasets, weights,
 caches and logs. It keeps data documentation and small JSON reports.
@@ -23,9 +24,9 @@ oversized staged objects if a file grows during staging. `.gitignore` itself
 cannot match file sizes; use this script for manual synchronization too.
 
 ```bash
-# Run once / inspect recent logs / stop or restart automatic sync
+# Run once / inspect latest log / stop or restart automatic sync
 /usr/bin/python3 scripts/autopush.py
-journalctl --user -u rna-autopush.service -n 30 --no-pager
+cat .git/autopush.log
 systemctl --user disable --now rna-autopush.timer
 systemctl --user enable --now rna-autopush.timer
 
