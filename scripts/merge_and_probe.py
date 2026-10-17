@@ -131,7 +131,8 @@ def eval_probe(net, feats, labels, device):
         keep = ~np.isnan(l)
         if keep.sum() < 10:
             continue
-        x = torch.from_numpy(f[keep]).float().to(device)
+        arr = np.ascontiguousarray(f[keep])
+        x = torch.from_numpy(arr).float().to(device)
         pred = net(x).squeeze(-1).cpu().numpy()
         s = spearman(pred, l[keep])
         if s is not None:
