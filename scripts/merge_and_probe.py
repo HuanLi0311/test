@@ -94,21 +94,33 @@ def flatten(feats, labels):
 
 
 def train_probe(kind, X, Y, device, epochs=20, lr=1e-3, bs=8192):
+    """Train on tensors held resident on the GPU.
+
+    A per-item DataLoader costs ~50ms per element here because each __getitem__
+    performs a Python-level tensor construction over an NFS-backed array; with
+    millions of rows that starves the GPU. Slicing a resident tensor instead
+    keeps the accelerator busy.
+    """
     net = build_probe(kind).to(device)
     opt = torch.optim.Adam(net.parameters(), lr=lr)
-    dl = DataLoader(RowDataset(X, Y), batch_size=bs, shuffle=True)
+    Xt = torch.from_numpy(np.ascontiguousarray(X)).float().to(device)
+    Yt = torch.from_numpy(np.ascontiguousarray(Y)).float().to(device)
+    n = len(Yt)
+    g = torch.Generator(device="cpu").manual_seed(0)
+
     for ep in range(epochs):
-        tot, n = 0.0, 0
-        for x, y in dl:
-            x, y = x.to(device), y.to(device)
-            loss = (net(x).squeeze(-1) - y).abs().mean()
+        perm = torch.randperm(n, generator=g).to(device)
+        tot, steps = 0.0, 0
+        for i in range(0, n, bs):
+            idx = perm[i:i + bs]
+            loss = (net(Xt[idx]).squeeze(-1) - Yt[idx]).abs().mean()
             opt.zero_grad()
             loss.backward()
             opt.step()
             tot += float(loss)
-            n += 1
+            steps += 1
         if ep == 0 or ep == epochs - 1:
-            print(f"    ep{ep} loss={tot/n:.4f}", flush=True)
+            print(f"    ep{ep} loss={tot/steps:.4f}", flush=True)
     return net
 
 
