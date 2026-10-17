@@ -1,0 +1,49 @@
+{
+  "n_train_seq": 3892,
+  "n_test_seq": 971,
+  "features_dim": 256,
+  "linear": {
+    "train_genes": {
+      "spearman_mean": 0.3285,
+      "median": 0.3385,
+      "n_transcripts": 3890
+    },
+    "test_genes": {
+      "spearman_mean": 0.3336,
+      "median": 0.3416,
+      "n_transcripts": 971
+    },
+    "in_gene_cv": {
+      "folds": [
+        0.3201,
+        0.3038,
+        0.3119,
+        0.3083,
+        0.3249
+      ],
+      "mean": 0.3138
+    }
+  },
+  "mlp": {
+    "train_genes": {
+      "spearman_mean": 0.3888,
+      "median": 0.4023,
+      "n_transcripts": 3890
+    },
+    "test_genes": {
+      "spearman_mean": 0.3936,
+      "median": 0.4052,
+      "n_transcripts": 971
+    },
+    "in_gene_cv": {
+      "folds": [
+        0.3688,
+        0.375,
+        0.3681,
+        0.3723,
+        0.3778
+      ],
+      "mean": 0.3724
+    }
+  }
+}
