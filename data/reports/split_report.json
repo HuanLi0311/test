@@ -1,0 +1,22 @@
+{
+  "n_train": 3892,
+  "n_test": 971,
+  "n_train_genes": 2118,
+  "n_test_genes": 529,
+  "train_length_bins": {
+    ">2000": 802,
+    "500-1000": 1739,
+    "<500": 476,
+    "1000-2000": 875
+  },
+  "test_length_bins": {
+    "<500": 120,
+    "1000-2000": 227,
+    "500-1000": 441,
+    ">2000": 183
+  },
+  "train_nt": 5447996,
+  "test_nt": 1335667,
+  "excluded_small_rna": 586,
+  "cross_study_records": 1
+}

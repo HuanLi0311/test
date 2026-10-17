@@ -1,0 +1,29 @@
+{
+  "input_records": 6190,
+  "kept": 5450,
+  "dropped": 740,
+  "issue_counts": {
+    "too_few_values": 33,
+    "negative_values": 589,
+    "extreme_outlier": 3,
+    "high_N_fraction": 697,
+    "duplicate_sequence": 1
+  },
+  "drop_policy": [
+    "constant_profile",
+    "high_N_fraction",
+    "length_mismatch",
+    "non_acgu_chars",
+    "too_few_values"
+  ],
+  "kept_total_nt": 6916674,
+  "kept_length_p50": 801,
+  "kept_length_max": 29882,
+  "kept_n_gt_1000": 2095,
+  "kept_n_gt_2000": 992,
+  "kept_by_source": {
+    "GSE153851": 1,
+    "GSE146952": 586,
+    "GSE132099": 4863
+  }
+}

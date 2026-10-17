@@ -1,0 +1,15 @@
+{
+  "records": 1327,
+  "records_with_sequence": 1327,
+  "total_nt_with_sequence": 753845,
+  "total_nonnull_reactivity_values": 240409,
+  "length_max": 29882,
+  "length_p50": 336,
+  "n_gt_1000nt": 213,
+  "n_gt_2000nt": 39,
+  "notes": [
+    "GSE146952: 629 transcripts",
+    "GSE236224: 697 gene/stage tracks",
+    "GSE132099: 0 rows, 61052 skipped (layout mismatch)"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "records_kept": 6190,
+  "records_dropped": 722,
+  "dropped_reasons": {
+    "GSE132099:length_mismatch": 295,
+    "GSE132099:no_sequence": 427
+  },
+  "by_source": {
+    "GSE153851": 1,
+    "GSE146952": 629,
+    "GSE236224": 697,
+    "GSE132099": 4863
+  },
+  "total_nt": 7537508,
+  "total_nonnull_reactivity": 6692334,
+  "length_p50": 786,
+  "length_p90": 2694,
+  "length_max": 29882,
+  "n_gt_1000nt": 2299,
+  "n_gt_2000nt": 1024
+}
